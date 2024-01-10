@@ -1,0 +1,19 @@
+{
+  "name": "solarage",
+  "version": "1.0.0",
+  "description": "A small web application that calculates your age on each planet in the Solar System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlennChristmas/solar-age-calculator.git"
+  },
+  "author": "Glenn Christmas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GlennChristmas/solar-age-calculator/issues"
+  },
+  "homepage": "https://github.com/GlennChristmas/solar-age-calculator#readme"
+}
