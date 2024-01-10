@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/GlennChristmas/solar-age-calculator/issues"
   },
-  "homepage": "https://github.com/GlennChristmas/solar-age-calculator#readme"
+  "homepage": "https://github.com/GlennChristmas/solar-age-calculator#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
 }
