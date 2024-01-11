@@ -84,3 +84,16 @@
 .planet-age {
   font-weight: 600;
 }
+
+.footer-container {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+  justify-content: center;
+  padding-top: 20px;
+  background-color: black;
+  height: 100px;
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+}
