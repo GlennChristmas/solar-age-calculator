@@ -52,3 +52,35 @@
   font-family: "Space Grotesk", sans-serif;
   gap: 10px;
 }
+
+.planet-age-boxes-container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  background-color: rgb(0, 15, 88);
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.planet {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 10px;
+  gap: 10px;
+  color: white;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.planet-image {
+  grid-row-start: 1;
+  grid-row-end: 4;
+  height: 100px; /* ensure this adjusts in a step-change as screen size increases/decreases, uses media queries etc */
+  width: 100px;
+}
+
+.planet-age {
+  font-weight: 600;
+}
