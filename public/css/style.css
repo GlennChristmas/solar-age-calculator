@@ -1,0 +1,54 @@
+.header-grid-container {
+  width: 100%;
+}
+
+.header-links-container {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.linkBlank {
+  flex: 6;
+}
+
+.link1 {
+  flex: 1;
+  text-align: right;
+}
+
+.link2 {
+  flex: 1;
+  text-align: right;
+}
+
+.title-container {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: black;
+  color: white;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 3rem;
+}
+
+.birthdate-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: black;
+  color: white;
+  font-family: "Space Grotesk", sans-serif;
+  gap: 10px;
+}
