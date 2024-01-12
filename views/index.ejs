@@ -14,9 +14,10 @@
   </head>
   <body>
     <%- include('partials/header') %>
-    <form class="birthdate-form">
+    <form class="birthdate-form" method="post" action="/submit-birthdate">
       <h3>Please enter your birthdate</h3>
-      <input type="date" />
+      <input type="date" name="birthDate" value= "<%= birthDate ? birthDate : ""
+      %>" />
       <input type="submit" value="Submit" />
     </form>
     <div class="planet-age-boxes-container">
