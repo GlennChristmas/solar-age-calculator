@@ -8,10 +8,11 @@
   width: 80%;
   margin: 0 auto;
   max-width: 1200px;
+  background-color: black;
 }
 
 .linkBlank {
-  flex: 6;
+  flex: 30;
 }
 
 .link1 {
@@ -22,6 +23,19 @@
 .link2 {
   flex: 1;
   text-align: right;
+}
+
+.social-media-logo {
+  width: 25px;
+  height: 25px;
+  padding: 10px;
+}
+
+.social-media-logo-invert {
+  width: 25px;
+  height: 25px;
+  filter: invert(1);
+  padding: 10px;
 }
 
 .title-container {
