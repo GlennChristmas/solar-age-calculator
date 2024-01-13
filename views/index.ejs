@@ -20,87 +20,26 @@
       %>" />
       <input type="submit" value="Submit" />
     </form>
+
     <div class="planet-age-boxes-container">
+      <% if (locals.planetAge) { %> <% planets.forEach(function(planet, index) {
+      %>
       <div class="planet">
-        <img src="/assets/nasa-mercury.jpg" class="planet-image" />
+        <img
+          src="<%=locals.planetImageNames[index]%>"
+          alt="image of <%=planet%>"
+          class="planet-image"
+        />
         <div class="planet-age">
-          <% if(locals.planetAge){ %> <%= `Your Mercury age is
-          ${locals.planetAge[0]}` %> <% } else { %> <%= `Hello from Mercury!`%>
-          <%}%>
+          Your <%=planet %> age is <%=Math.round(planetAge[index])%>
         </div>
-        <div class="planet-details-1">mercury details 1</div>
-        <div class="planet-details-2">mercury details 2</div>
-      </div>
-      <div class="planet">
-        <img src="/assets/nasa-venus.jpg" class="planet-image" />
-        <div class="planet-age">
-          <% if(locals.planetAge){ %> <%= `Your Venus age is
-          ${locals.planetAge[1]}` %> <% } else { %> <%= `Hello from Venus!`%>
-          <%}%>
+        <div class="planet-details-1">
+          <%= `You are ${locals.intervals[index]} from your next
+          ${locals.planetDemonyms[index]} birthday.` %>
         </div>
-        <div class="planet-details-1">venus details 1</div>
-        <div class="planet-details-2">venus details 2</div>
+        <div class="planet-details-2"><%= locals.messages[index]%></div>
       </div>
-      <div class="planet">
-        <img src="/assets/nasa-earth.jpg" class="planet-image" />
-        <div class="planet-age">
-          <% if(locals.planetAge){ %> <%= `Your Earth age is
-          ${locals.planetAge[2]}` %> <% } else { %> <%= `Hello from Earth!`%>
-          <%}%>
-        </div>
-        <div class="planet-details-1">earth details 1</div>
-        <div class="planet-details-2">earth details 2</div>
-      </div>
-      <div class="planet">
-        <img src="/assets/nasa-mars.jpg" class="planet-image" />
-        <div class="planet-age">
-          <% if(locals.planetAge){ %> <%= `Your Mars age is
-          ${locals.planetAge[3]}` %> <% } else { %> <%= `Hello from Mars!`%>
-          <%}%>
-        </div>
-        <div class="planet-details-1">mars details 1</div>
-        <div class="planet-details-2">mars details 2</div>
-      </div>
-      <div class="planet">
-        <img src="/assets/jupiter.jpg" class="planet-image" />
-        <div class="planet-age">
-          <% if(locals.planetAge){ %> <%= `Your Jupiter age is
-          ${locals.planetAge[4]}` %> <% } else { %> <%= `Hello from Jupiter!`%>
-          <%}%>
-        </div>
-        <div class="planet-details-1">jupiter details 1</div>
-        <div class="planet-details-2">jupiter details 2</div>
-      </div>
-      <div class="planet">
-        <img src="/assets/nasa-saturn.jpg" class="planet-image" />
-        <div class="planet-age">
-          <% if(locals.planetAge){ %> <%= `Your Saturn age is
-          ${locals.planetAge[5]}` %> <% } else { %> <%= `Hello from Saturn!`%>
-          <%}%>
-        </div>
-        <div class="planet-details-1">saturn details 1</div>
-        <div class="planet-details-2">saturn details 2</div>
-      </div>
-      <div class="planet">
-        <img src="/assets/nasa-uranus.jpg" class="planet-image" />
-        <div class="planet-age">
-          <% if(locals.planetAge){ %> <%= `Your Uranus age is
-          ${locals.planetAge[6]}` %> <% } else { %> <%= `Hello from Uranus!`%>
-          <%}%>
-        </div>
-        <div class="planet-details-1">uranus details 1</div>
-        <div class="planet-details-2">uranus details 2</div>
-      </div>
-      <div class="planet">
-        <img src="/assets/nasa-neptune.jpg" class="planet-image" />
-        <div class="planet-age">
-          <% if(locals.planetAge){ %> <%= `Your Neptune age is
-          ${locals.planetAge[7]}` %> <% } else { %> <%= `Hello from Neptune!`%>
-          <%}%>
-        </div>
-        <div class="planet-details-1">neptune details 1</div>
-        <div class="planet-details-2">neptune details 2</div>
-      </div>
+      <% }); %> <% } %>
     </div>
     <%- include('partials/footer') %>
   </body>

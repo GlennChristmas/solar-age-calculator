@@ -9,7 +9,49 @@ let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
-const planetAgeMultiplier = [4.17, 1.61, 1, 0.53, 0.08, 0.03, 0.01, 0.006];
+let intervals = [];
+
+//Constants
+const planetAgeMultiples = [4.17, 1.61, 1, 0.53, 0.08, 0.03, 0.01, 0.006];
+const planets = [
+  "Mercury",
+  "Venus",
+  "Earth",
+  "Mars",
+  "Jupiter",
+  "Saturn",
+  "Uranus",
+  "Neptune",
+];
+const planetImageNames = [
+  "/assets/nasa-mercury.jpg",
+  "/assets/nasa-venus.jpg",
+  "/assets/nasa-earth.jpg",
+  "/assets/nasa-mars.jpg",
+  "/assets/jupiter.jpg",
+  "/assets/nasa-saturn.jpg",
+  "/assets/nasa-uranus.jpg",
+  "/assets/nasa-neptune.jpg",
+];
+const planetDemonyms = [
+  "mercurian",
+  "venusian",
+  "terran",
+  "martian",
+  "jovian",
+  "saturnian",
+  "uranian",
+  "neptunian",
+];
+
+//Function sourcing
+const {
+  nextPlanetAgeDaysCalculator,
+} = require("./helpers/nextPlanetAgeDaysCalculator");
+
+const {
+  birthdayIntervalTextGenerator,
+} = require("./helpers/birthdayIntervalTextGenerator");
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
@@ -20,18 +62,37 @@ app.post("/submit-birthdate", (req, res) => {
   console.log("Birthdate submitted:", birthDate);
   let birthDateNumeric = new Date(req.body.birthDate);
 
-  let ageDiff = Math.abs(currentDate - birthDateNumeric);
-  let earthAge = Math.floor(ageDiff / (1000 * 60 * 60 * 24 * 365.25));
+  console.log(`your birthDate is ${birthDate}`);
+  console.log(`your birthDateNumeric is ${birthDateNumeric}`);
 
-  for (let i = 0; i < planetAgeMultiplier.length; i++) {
-    planetAge[i] = planetAgeMultiplier[i] * earthAge;
-    planetAge[i] = Math.round(planetAge[i]);
+  let ageDiff = Math.abs(currentDate - birthDateNumeric);
+  let earthAge = ageDiff / (1000 * 60 * 60 * 24 * 365.25);
+
+  for (let i = 0; i < planetAgeMultiples.length; i++) {
+    planetAge[i] = planetAgeMultiples[i] * earthAge;
   }
 
-  console.log(`Your earth age is ${earthAge}.`);
-  console.log(planetAge);
+  //calculate earth days until next planet birthday
+  let earthDaysToPlanetBirthday = nextPlanetAgeDaysCalculator(
+    planetAge,
+    planetAgeMultiples
+  );
 
-  res.render("index", { currentYear, birthDate, planetAge });
+  //generate text according to no. of earth days until each planet birthday
+  let { intervals, messages } = birthdayIntervalTextGenerator(
+    earthDaysToPlanetBirthday
+  );
+
+  res.render("index", {
+    currentYear,
+    birthDate,
+    planetAge,
+    intervals,
+    messages,
+    planets,
+    planetImageNames,
+    planetDemonyms,
+  });
 });
 
 const PORT = process.env.PORT || 3000;
