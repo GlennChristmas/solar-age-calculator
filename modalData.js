@@ -54,3 +54,5 @@ let modalData = {
       "Neptune has the fastest winds in the Solar System, reaching speeds of up to 2,100 kilometers per hour.",
   },
 };
+
+module.exports = { modalData };

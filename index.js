@@ -53,6 +53,9 @@ const {
   birthdayIntervalTextGenerator,
 } = require("./helpers/birthdayIntervalTextGenerator");
 
+//Data sourcing
+const { modalData } = require("./modalData");
+
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
 });
