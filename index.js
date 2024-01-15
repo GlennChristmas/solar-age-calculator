@@ -95,6 +95,7 @@ app.post("/submit-birthdate", (req, res) => {
     planets,
     planetImageNames,
     planetDemonyms,
+    modalData,
   });
 });
 
