@@ -121,3 +121,18 @@
 .hidden {
   display: none;
 }
+
+.planet-container {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  left: 500;
+  background-color: rgba(0, 0, 255, 0.379);
+  height: 800px;
+  border-radius: 20px;
+}

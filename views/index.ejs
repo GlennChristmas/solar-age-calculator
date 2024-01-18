@@ -20,7 +20,6 @@
       %>" />
       <input type="submit" value="Submit" />
     </form>
-
     <div class="planet-age-boxes-container">
       <% if (locals.planetAge) { %> <% planets.forEach(function(planet, index) {
       %>
@@ -39,8 +38,8 @@
         </div>
         <div class="planet-details-2"><%= locals.messages[index]%></div>
       </div>
-      <% }); %> <% } %>
+      <% }); %> <% } %> <%- include('partials/modal') %>
     </div>
-    <%- include('partials/modal') %> <%- include('partials/footer') %>
+    <%- include('partials/footer') %>
   </body>
 </html>
