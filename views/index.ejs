@@ -24,7 +24,7 @@
     <div class="planet-age-boxes-container">
       <% if (locals.planetAge) { %> <% planets.forEach(function(planet, index) {
       %>
-      <div class="planet <%=planet%>">
+      <div class="planetAgeBox <%=planet%>">
         <img
           src="<%=locals.planetImageNames[index]%>"
           alt="image of <%=planet%>"
@@ -41,6 +41,6 @@
       </div>
       <% }); %> <% } %>
     </div>
-    <%- include('partials/footer') %>
+    <%- include('partials/modal') %> <%- include('partials/footer') %>
   </body>
 </html>
