@@ -118,10 +118,6 @@
   color: white;
 }
 
-.hidden {
-  display: none;
-}
-
 .planet-parent-container {
   position: relative;
   display: flex;
@@ -175,4 +171,8 @@
   right: -10px;
   height: 30px;
   width: 30px;
+}
+
+.hidden {
+  display: none;
 }

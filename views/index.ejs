@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
       rel="stylesheet"
     />
+    <script src="/domManipulation.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -41,10 +42,10 @@
         </div>
         <% }); %> <% } %> <% if(locals.modalData){ %> <% for (const planet in
         modalData) { %>
-        <div class="planet-modal">
+        <div class="planet-modal hidden">
           <div class="planet-modal-content <%= planet %>">
             <img
-              class="planet-modal-exit-button"
+              class="planet-modal-exit-button hidden"
               src="/assets/close-circle-svgrepo-com.svg"
             />
             <h3><%= planet %></h3>
