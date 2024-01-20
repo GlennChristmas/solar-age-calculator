@@ -43,6 +43,10 @@
         modalData) { %>
         <div class="planet-modal">
           <div class="planet-modal-content <%= planet %>">
+            <img
+              class="planet-modal-exit-button"
+              src="/assets/close-circle-svgrepo-com.svg"
+            />
             <h3><%= planet %></h3>
             <% const details = modalData[planet]; %> <% for (const key in
             details) { /*note - we are using nested 'for in' loops here - these
@@ -54,6 +58,7 @@
           </div>
         </div>
         <% } %> <% } %>
+        <div class="planet-overlay hidden"></div>
       </div>
     </div>
     <%- include('partials/footer') %>
