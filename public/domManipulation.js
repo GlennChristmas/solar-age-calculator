@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const overlay = document.querySelector(".planet-overlay");
   const modalExit = document.querySelectorAll(".planet-modal-exit-button");
 
+  //open modal
   for (let i = 0; i < planetImage.length; i++) {
     planetImage[i].addEventListener("click", () => {
       planetModal[i].classList.remove("hidden");
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
 
+  //close modal
   for (let i = 0; i < planetModal.length; i++) {
     modalExit[i].addEventListener("click", () => {
       planetModal[i].classList.add("hidden");
