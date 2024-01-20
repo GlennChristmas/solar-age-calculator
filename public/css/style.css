@@ -148,10 +148,12 @@
   grid-template-rows: repeat(auto, 1fr);
   padding: 20px;
   width: 100%;
-  background-color: rgba(0, 0, 255, 0.379);
+  background-color: rgba(0, 0, 255, 0.579);
+  color: white;
   height: 400px;
   width: 600px;
   border-radius: 20px;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 .planet-overlay {
