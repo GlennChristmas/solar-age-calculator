@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap"
       rel="stylesheet"
     />
+    <script src="/domManipulation.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -20,26 +21,49 @@
       %>" />
       <input type="submit" value="Submit" />
     </form>
-
-    <div class="planet-age-boxes-container">
-      <% if (locals.planetAge) { %> <% planets.forEach(function(planet, index) {
-      %>
-      <div class="planet">
-        <img
-          src="<%=locals.planetImageNames[index]%>"
-          alt="image of <%=planet%>"
-          class="planet-image"
-        />
-        <div class="planet-age">
-          Your <%=planet %> age is <%=Math.floor(planetAge[index])%>
+    <div class="planet-parent-container">
+      <div class="planet-age-boxes-container">
+        <% if (locals.planetAge) { %> <% planets.forEach(function(planet, index)
+        { %>
+        <div class="planet-age-box-content <%=planet%>">
+          <img
+            src="<%=locals.planetImageNames[index]%>"
+            alt="image of <%=planet%>"
+            class="planet-image"
+          />
+          <div class="planet-age">
+            Your <%=planet %> age is <%=Math.floor(planetAge[index])%>
+          </div>
+          <div class="planet-details-1">
+            <%= `You are ${locals.intervals[index]} from your next
+            ${locals.planetDemonyms[index]} birthday.` %>
+          </div>
+          <div class="planet-details-2"><%= locals.messages[index]%></div>
         </div>
-        <div class="planet-details-1">
-          <%= `You are ${locals.intervals[index]} from your next
-          ${locals.planetDemonyms[index]} birthday.` %>
+        <% }); %> <% } %> <% if(locals.modalData){ %> <% for (const planet in
+        modalData) { %>
+        <div class="planet-modal hidden">
+          <div class="planet-modal-content <%= planet %>">
+            <img
+              class="planet-modal-exit-button"
+              src="/assets/close-circle-svgrepo-com.svg"
+            />
+            <h3><%= planet %></h3>
+            <% const details = modalData[planet]; %> <% for (const key in
+            details) { /*note - we are using nested 'for in' loops here - these
+            are useful to loop through objects */ %>
+            <div class="planet-detail <%=key%>">
+              <div class="planet-detail-title">
+                <strong><%= key %></strong>
+              </div>
+              <div class="planet-detail-contents"><%= details[key] %></div>
+            </div>
+            <% } %>
+          </div>
         </div>
-        <div class="planet-details-2"><%= locals.messages[index]%></div>
+        <% } %> <% } %>
+        <div class="planet-overlay hidden"></div>
       </div>
-      <% }); %> <% } %>
     </div>
     <%- include('partials/footer') %>
   </body>

@@ -53,6 +53,10 @@ const {
   birthdayIntervalTextGenerator,
 } = require("./helpers/birthdayIntervalTextGenerator");
 
+//Data sourcing
+const { modalData } = require("./modalData");
+const { modalKeyTitles } = require("./modalData");
+
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
 });
@@ -92,6 +96,8 @@ app.post("/submit-birthdate", (req, res) => {
     planets,
     planetImageNames,
     planetDemonyms,
+    modalData,
+    modalKeyTitles,
   });
 });
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <% if(locals.modalData){ %> <% for (const planet in modalData) { %>
+    <div class="planet-container <%= planet %>">
+      <h3><%= planet %></h3>
+      <% const details = modalData[planet]; %> <% for (const key in details) {
+      /*note - we are using nested 'for in' loops here - these are useful to
+      loop through objects */ %>
+      <div class="planet-detail <%=key%>">
+        <strong><%= key %>:</strong> <%= details[key] %>
+      </div>
+      <% } %>
+    </div>
+    <% } %> <% } %>
+  </body>
+</html>
