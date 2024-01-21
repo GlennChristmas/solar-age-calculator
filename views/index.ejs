@@ -53,7 +53,10 @@
             details) { /*note - we are using nested 'for in' loops here - these
             are useful to loop through objects */ %>
             <div class="planet-detail <%=key%>">
-              <strong><%= key %>:</strong> <%= details[key] %>
+              <div class="planet-detail-title">
+                <strong><%= key %></strong>
+              </div>
+              <div class="planet-detail-contents"><%= details[key] %></div>
             </div>
             <% } %>
           </div>
