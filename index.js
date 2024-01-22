@@ -5,7 +5,10 @@ import bodyParser from "body-parser";
 
 const app = express();
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: true })); //this is a slightly newer approach to extract user POSTs
+
+app.use(express.static(path.join(__dirname, "/public")));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
