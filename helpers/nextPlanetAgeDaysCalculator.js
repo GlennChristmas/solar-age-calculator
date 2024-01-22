@@ -1,4 +1,4 @@
-function nextPlanetAgeDaysCalculator(age, multiples) {
+export function nextPlanetAgeDaysCalculator(age, multiples) {
   const earthDaysPerOrbit = multiples.map((multiple) => 365.25 / multiple);
 
   let nextAge = age.map((age) => Math.ceil(age));
@@ -10,5 +10,3 @@ function nextPlanetAgeDaysCalculator(age, multiples) {
 
   return earthDaysToPlanetBirthday;
 }
-
-module.exports = { nextPlanetAgeDaysCalculator };

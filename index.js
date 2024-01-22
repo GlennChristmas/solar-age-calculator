@@ -1,7 +1,9 @@
-const express = require("express");
-const app = express();
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import bodyParser from "body-parser";
 
-app.use(express.static("public"));
+const app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true })); //this is a slightly newer approach to extract user POSTs
 
@@ -45,17 +47,11 @@ const planetDemonyms = [
 ];
 
 //Function sourcing
-const {
-  nextPlanetAgeDaysCalculator,
-} = require("./helpers/nextPlanetAgeDaysCalculator");
+import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
+import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGenerator.js";
 
-const {
-  birthdayIntervalTextGenerator,
-} = require("./helpers/birthdayIntervalTextGenerator");
-
-//Data sourcing
-const { modalData } = require("./modalData");
-const { modalKeyTitles } = require("./modalData");
+// Data sourcing
+import { modalData, modalKeyTitles } from "./public/modalData.js";
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });

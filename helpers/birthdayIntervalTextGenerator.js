@@ -1,4 +1,4 @@
-function birthdayIntervalTextGeneratorHelper(days) {
+export function birthdayIntervalTextGeneratorHelper(days) {
   let birthdayInterval, birthdayIntervalMessage;
 
   if (days < 7) {
@@ -24,7 +24,7 @@ function birthdayIntervalTextGeneratorHelper(days) {
 
 //apply the above with map (using birthdayIntervalTextGenerator as a helper function)
 
-function birthdayIntervalTextGenerator(daysArray) {
+export function birthdayIntervalTextGenerator(daysArray) {
   let intervals = [];
   let messages = [];
 
@@ -37,8 +37,3 @@ function birthdayIntervalTextGenerator(daysArray) {
 
   return { intervals, messages };
 }
-
-module.exports = {
-  birthdayIntervalTextGeneratorHelper,
-  birthdayIntervalTextGenerator,
-};
