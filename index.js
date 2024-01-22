@@ -6,6 +6,9 @@ import bodyParser from "body-parser";
 const app = express();
 app.set("view engine", "ejs");
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
