@@ -13,13 +13,13 @@
     <title>Party Planning</title>
   </head>
   <body>
+    <%- include('partials/header') %>
     <div class="party-planner-page-container">
-      <%- include('partials/header') %>
-      <div class="party-planner-data-entry"></div>
-      <div class="party-planner-invite-list"></div>
-      <div class="party-planner-cocktaiil-creator"></div>
-      <div class="party-planner-rspv-generator"></div>
-      <%- include('partials/footer') %>
+      <div class="party-box data-entry">data entry</div>
+      <div class="party-box invite-list">invite list</div>
+      <div class="party-box cocktail-creator">cocktail creator</div>
+      <div class="party-box rsvp-generator">rspv generator</div>
     </div>
+    <%- include('partials/footer') %>
   </body>
 </html>
