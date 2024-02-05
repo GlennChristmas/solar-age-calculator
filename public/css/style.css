@@ -175,6 +175,36 @@
   width: 30px;
 }
 
+.party-planner-page-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 600px;
+  background-color: black;
+  color: white;
+  font-family: "Space Grotesk", sans-serif;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box; /* added to so that the padding 
+  and border of an element are included within its specified width and height */
+}
+
+@media screen and (max-width: 1150px) {
+  .party-planner-page-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
+
+.party-box {
+  display: flex;
+  background-color: cadetblue;
+  padding: 10px;
+}
+
 .hidden {
   display: none;
 }
