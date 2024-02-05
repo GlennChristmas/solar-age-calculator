@@ -63,6 +63,10 @@ app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
 });
 
+app.get("/party-planning", (req, res) => {
+  res.render("partyPlanning", { currentYear });
+});
+
 app.post("/submit-birthdate", (req, res) => {
   let birthDate = req.body.birthDate;
   console.log("Birthdate submitted:", birthDate);
