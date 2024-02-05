@@ -63,6 +63,10 @@ app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
 });
 
+app.get("/party-planning", (req, res) => {
+  res.render("partyPlanning", { currentYear });
+});
+
 app.post("/submit-birthdate", (req, res) => {
   let birthDate = req.body.birthDate;
   console.log("Birthdate submitted:", birthDate);
@@ -103,5 +107,5 @@ app.post("/submit-birthdate", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
