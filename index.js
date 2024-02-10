@@ -59,6 +59,10 @@ import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGen
 
 // Data sourcing
 import { modalData, modalKeyTitles } from "./public/modalData.js";
+import { partyFormContents } from "./public/partyFormContents.js";
+import { keyExists } from "./public/keyExists.js";
+import { getValueByKey } from "./public/getValueByKey.js";
+import { objectArrayWrapper } from "./public/objectArrayWrapper.js";
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
