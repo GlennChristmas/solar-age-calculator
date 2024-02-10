@@ -192,6 +192,20 @@
   and border of an element are included within its specified width and height */
 }
 
+.data-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.question-container {
+  grid-column: span 2;
+}
+
+.half-width {
+  grid-column: span 1;
+}
+
 @media screen and (max-width: 1150px) {
   .party-planner-page-container {
     grid-template-columns: 1fr;

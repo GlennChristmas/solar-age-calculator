@@ -18,6 +18,7 @@ let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
 let intervals = [];
+let partyDetailsArray = [];
 
 //Constants
 const planetAgeMultiples = [4.17, 1.61, 1, 0.53, 0.08, 0.03, 0.01, 0.006];
@@ -58,13 +59,37 @@ import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGen
 
 // Data sourcing
 import { modalData, modalKeyTitles } from "./public/modalData.js";
+import { partyFormContents } from "./public/partyFormContents.js";
+import { keyExists } from "./public/keyExists.js";
+import { getValueByKey } from "./public/getValueByKey.js";
+import { objectArrayWrapper } from "./public/objectArrayWrapper.js";
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
 });
 
 app.get("/party-planning", (req, res) => {
-  res.render("partyPlanning", { currentYear });
+  res.render("partyPlanning", {
+    currentYear,
+    partyFormContents,
+    partyDetailsArray,
+    keyExists,
+    getValueByKey,
+  });
+});
+
+app.post("/submit-party-details", (req, res) => {
+  let partyDetailsObject = req.body;
+
+  partyDetailsArray = objectArrayWrapper(partyDetailsObject);
+
+  res.render("partyPlanning", {
+    currentYear,
+    partyFormContents,
+    partyDetailsArray,
+    keyExists,
+    getValueByKey,
+  });
 });
 
 app.post("/submit-birthdate", (req, res) => {
