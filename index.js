@@ -18,6 +18,7 @@ let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
 let intervals = [];
+let partyDetailsArray = [];
 
 //Constants
 const planetAgeMultiples = [4.17, 1.61, 1, 0.53, 0.08, 0.03, 0.01, 0.006];
