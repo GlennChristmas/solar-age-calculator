@@ -69,7 +69,27 @@ app.get("/", (req, res) => {
 });
 
 app.get("/party-planning", (req, res) => {
-  res.render("partyPlanning", { currentYear });
+  res.render("partyPlanning", {
+    currentYear,
+    partyFormContents,
+    partyDetailsArray,
+    keyExists,
+    getValueByKey,
+  });
+});
+
+app.post("/submit-party-details", (req, res) => {
+  let partyDetailsObject = req.body;
+
+  partyDetailsArray = objectArrayWrapper(partyDetailsObject);
+
+  res.render("partyPlanning", {
+    currentYear,
+    partyFormContents,
+    partyDetailsArray,
+    keyExists,
+    getValueByKey,
+  });
 });
 
 app.post("/submit-birthdate", (req, res) => {

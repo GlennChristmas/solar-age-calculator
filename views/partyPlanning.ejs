@@ -17,7 +17,36 @@
   <body>
     <%- include('partials/header') %>
     <div class="party-planner-page-container">
-      <div class="party-box data-entry">data entry</div>
+      <form class="party-box" method="post" action="/submit-party-details">
+        <div class="data-entry">
+          <% for(field of partyFormContents) { %>
+          <div
+            class="question-container <%= field.halfWidth ? 'half-width' : '' %>"
+          >
+            <div class="question-title"><%= field.questionTitle %></div>
+            <% if(field.dropDownOptions){ %>
+            <select name="<%=field.name%>">
+              <% field.dropDownOptions.forEach(function(option) { %>
+              <option value="<%= option %>"
+                <% const selectedStatus = keyExists(partyDetailsArray, field.name) ? getValueByKey(partyDetailsArray, field.name) : ""  %>
+                <%= selectedStatus == option ? "selected" : "" %>>
+                <%= option %></option>
+              <% }); %>
+            </select>
+            <% } else { %>
+            <div class="free-text-field full-width">
+              <input type="text" name="<%=field.name%>" value="<%=
+              keyExists(partyDetailsArray, field.name) ?
+              getValueByKey(partyDetailsArray, field.name) : "" %>" />
+            </div>
+            <% } %>
+          </div>
+          <% } %>
+          <div class="question-container">
+            <input type="submit" value="Submit" />
+          </div>
+        </div>
+      </form>
       <div class="party-box invite-list">invite list</div>
       <div class="party-box cocktail-creator">cocktail creator</div>
       <div class="party-box rsvp-generator">rspv generator</div>
