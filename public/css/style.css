@@ -215,8 +215,36 @@
 
 .party-box {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: cadetblue;
-  padding: 10px;
+  padding: 20px;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 8px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  color: #333;
+}
+
+.submit-button-container {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+
+input[type="submit"]:hover {
+  background-color: #d8d8d8;
 }
 
 .hidden {
