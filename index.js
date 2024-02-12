@@ -20,39 +20,6 @@ let planetAge = [];
 let intervals = [];
 let partyDetailsArray = [];
 
-//Constants
-const planetAgeMultiples = [4.17, 1.61, 1, 0.53, 0.08, 0.03, 0.01, 0.006];
-const planets = [
-  "Mercury",
-  "Venus",
-  "Earth",
-  "Mars",
-  "Jupiter",
-  "Saturn",
-  "Uranus",
-  "Neptune",
-];
-const planetImageNames = [
-  "/assets/nasa-mercury.jpg",
-  "/assets/nasa-venus.jpg",
-  "/assets/nasa-earth.jpg",
-  "/assets/nasa-mars.jpg",
-  "/assets/jupiter.jpg",
-  "/assets/nasa-saturn.jpg",
-  "/assets/nasa-uranus.jpg",
-  "/assets/nasa-neptune.jpg",
-];
-const planetDemonyms = [
-  "mercurian",
-  "venusian",
-  "terran",
-  "martian",
-  "jovian",
-  "saturnian",
-  "uranian",
-  "neptunian",
-];
-
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
 import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGenerator.js";
@@ -63,6 +30,12 @@ import { partyFormContents } from "./public/partyFormContents.js";
 import { keyExists } from "./public/keyExists.js";
 import { getValueByKey } from "./public/getValueByKey.js";
 import { objectArrayWrapper } from "./public/objectArrayWrapper.js";
+import {
+  planetAgeMultiples,
+  planets,
+  planetImageNames,
+  planetDemonyms,
+} from "./public/planetData.js";
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
