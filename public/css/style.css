@@ -222,8 +222,16 @@
   padding: 20px;
 }
 
-select,
-input {
+.submit-button-container {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+
+.party-box input,
+.party-box select {
   width: 100%;
   padding: 8px 15px;
   margin: 8px 0;
@@ -233,14 +241,6 @@ input {
   background-color: #f8f8f8;
   font-size: 16px;
   color: #333;
-}
-
-.submit-button-container {
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30%;
 }
 
 input[type="submit"]:hover {
