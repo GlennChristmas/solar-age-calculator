@@ -178,11 +178,11 @@
 .party-planner-page-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   width: 80%;
   margin: 0 auto;
   max-width: 1200px;
-  height: 600px;
+  height: auto;
   background-color: black;
   color: white;
   font-family: "Space Grotesk", sans-serif;
