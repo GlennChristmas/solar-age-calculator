@@ -19,6 +19,7 @@ let birthDate = null;
 let planetAge = [];
 let intervals = [];
 let partyDetailsArray = [];
+let guestList = [];
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
@@ -36,6 +37,7 @@ import {
   planetImageNames,
   planetDemonyms,
 } from "./public/planetData.js";
+import { guestListModalContents } from "./public/guestListModalContents.js";
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
@@ -48,6 +50,8 @@ app.get("/party-planning", (req, res) => {
     partyDetailsArray,
     keyExists,
     getValueByKey,
+    guestListModalContents,
+    guestList,
   });
 });
 
