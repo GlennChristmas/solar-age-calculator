@@ -147,7 +147,6 @@
   grid-template-columns: repeat(1, auto);
   grid-template-rows: repeat(auto, 1fr);
   padding: 20px;
-  width: 100%;
   background-color: rgba(0, 0, 255, 0.579);
   color: white;
   height: 400px;
@@ -192,7 +191,8 @@
   and border of an element are included within its specified width and height */
 }
 
-.data-entry {
+.data-entry,
+.guest-list-contents {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
@@ -245,6 +245,31 @@
 
 input[type="submit"]:hover {
   background-color: #d8d8d8;
+}
+
+.guest-list-container {
+  position: relative; /* This is necessary for absolute positioning of the child */
+  width: 100%; /* Example width */
+  height: 100%; /* Example height, ensure the container has a set height */
+}
+
+.guest-list-modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding: 0px 15px 0px 15px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 67, 96, 0);
+  z-index: 1000; /* Ensure it's above other content */
+  overflow-y: scroll;
+}
+
+/* Customize the scrollbar track (background) */
+.guest-list-modal::-webkit-scrollbar-track {
+  background: transparent; /* Make scrollbar track transparent */
 }
 
 .hidden {
