@@ -1,38 +1,44 @@
 <form class="party-box" method="post" action="/submit-guest-list">
-    <h2>Guest list</h2>
-    <div class="guest-list-container">
-      <div class="guest-list-modal hidden">
-        <div class="guest-list-contents">
-          <% for(field of guestListModalContents) { %>
-            <div
-              class="question-container <%= field.halfWidth ? 'half-width' : '' %>"
-            >
-              <div class="question-title"><%= field.questionTitle %></div>
-              <% if(field.dropDownOptions){ %>
-              <select name="<%=field.name%>">
-                <% field.dropDownOptions.forEach(function(option) { %>
-                <option value="<%= option %>"
-                  <% const selectedStatus = keyExists(partyDetailsArray, field.name) ? getValueByKey(partyDetailsArray, field.name) : ""  %>
-                  <%= selectedStatus == option ? "selected" : "" %>>
-                  <%= option %></option>
-                <% }); %>
-              </select>
-              <% } else { %>
-              <div class="free-text-field full-width">
-                <input type="text" name="<%=field.name%>" value="<%=
-                keyExists(partyDetailsArray, field.name) ?
-                getValueByKey(partyDetailsArray, field.name) : "" %>" />
-              </div>
-              <% } %>
-            </div>
-            <% } %>
+  <h2>Guest list</h2>
+  <div class="guest-list-container">
+    <%- include('guestList/guestListModalContents') %> <% for(id of
+    guestDetailsArray) { %>
+    <div class="guest-record-container">
+      <div class="guest-record-grid">
+        <div class="guest-record-details-container">
+          <div class="guest-record-name">
+            <%= id.firstName %> <%= id.lastName %>
+          </div>
+          <div class="guest-record-details">
+            Some key details to be added in a later PR.
+          </div>
+        </div>
+        <div class="guest-record-amendment-container">
+          <input
+            class="guest-record-button edit"
+            type="button"
+            value="Edit"
+            data-id="<%= id.uuid%>"
+          />
+          <input
+            class="guest-record-button delete"
+            type="button"
+            value="Delete"
+            data-id="<%= id.uuid%>"
+          />
         </div>
       </div>
     </div>
-    <div class="submit-button-container">
-        <input class="guest-list-submit hidden" type="submit" value="Submit details">
-      </div>
-      <div class="submit-button-container guest-list-add">
-        <input class="guest-list-add" type="button" value="Add a new guest">
-    </div>
-  </form>
+    <% }%>
+  </div>
+  <div class="submit-button-container">
+    <input
+      class="guest-list-submit hidden"
+      type="submit"
+      value="Submit details"
+    />
+  </div>
+  <div class="submit-button-container guest-list-add">
+    <input class="guest-list-add" type="button" value="Add guest" />
+  </div>
+</form>

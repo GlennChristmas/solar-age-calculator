@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
+import { v4 as uuidv4 } from "uuid";
 
 const app = express();
 app.set("view engine", "ejs");
@@ -17,9 +18,8 @@ let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
-let intervals = [];
 let partyDetailsArray = [];
-let guestList = [];
+let guestDetailsArray = [];
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
@@ -51,7 +51,7 @@ app.get("/party-planning", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestList,
+    guestDetailsArray,
   });
 });
 
@@ -67,12 +67,21 @@ app.post("/submit-party-details", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestList,
+    guestDetailsArray,
   });
 });
 
 app.post("/submit-guest-list", (req, res) => {
   let guestDetails = req.body;
+  let guestUUID = uuidv4();
+
+  guestDetails["uuid"] = guestUUID;
+
+  //this will add a new record - regardless of whether we are editing another one or not
+  guestDetailsArray.push(guestDetails);
+  //we therefore need to create an 'edit' pathway distinct to the 'add' one
+
+  console.log(guestDetailsArray);
 
   res.render("partyPlanning", {
     currentYear,
@@ -81,7 +90,7 @@ app.post("/submit-guest-list", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestList,
+    guestDetailsArray,
   });
 });
 
