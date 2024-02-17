@@ -1,28 +1,7 @@
 <form class="party-box" method="post" action="/submit-guest-list">
   <h2>Guest list</h2>
   <div class="guest-list-container">
-    <div class="guest-list-modal hidden">
-      <div class="guest-list-contents">
-        <% for(field of guestListModalContents) { %>
-        <div
-          class="question-container <%= field.halfWidth ? 'half-width' : '' %>"
-        >
-          <div class="question-title"><%= field.questionTitle %></div>
-          <% if(field.dropDownOptions){ %>
-          <select name="<%=field.name%>">
-            <% field.dropDownOptions.forEach(function(option) { %>
-            <option value="<%= option %>"><%= option %></option>
-            <% }); %>
-          </select>
-          <% } else { %>
-          <div class="free-text-field full-width">
-            <input type="text" name="<%=field.name%>" />
-          </div>
-          <% } %>
-        </div>
-        <% } %>
-      </div>
-    </div>
+    <%- include('guestList/guestListModalContents') %>
   </div>
   <div class="submit-button-container">
     <input
