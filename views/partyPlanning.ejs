@@ -12,6 +12,7 @@
     />
     <script type="module" src="/keyExists.js"></script>
     <script type="module" src="/getValueByKey.js"></script>
+    <script type="module" src="/guestListModal.js"></script>
     <title>Party Planning</title>
   </head>
   <body>
@@ -48,12 +49,7 @@
           <input type="submit" value="Submit" />
         </div>
       </form>
-      <form class="party-box" method="post" action="/submit-guest-list">
-        <h2>Guest list</h2>
-        <div class="guest-list-container">
-          
-        </div>
-      </form>
+      <%- include('partials/guestList') %>
       <div class="party-box cocktail-creator">cocktail creator</div>
       <div class="party-box rsvp-generator">rspv generator</div>
     </div>

@@ -66,6 +66,22 @@ app.post("/submit-party-details", (req, res) => {
     partyDetailsArray,
     keyExists,
     getValueByKey,
+    guestListModalContents,
+    guestList,
+  });
+});
+
+app.post("/submit-guest-list", (req, res) => {
+  let guestDetails = req.body;
+
+  res.render("partyPlanning", {
+    currentYear,
+    partyFormContents,
+    partyDetailsArray,
+    keyExists,
+    getValueByKey,
+    guestListModalContents,
+    guestList,
   });
 });
 
