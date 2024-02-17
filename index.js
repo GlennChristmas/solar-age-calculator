@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
+import { v4 as uuidv4 } from "uuid";
 
 const app = express();
 app.set("view engine", "ejs");
@@ -74,10 +75,15 @@ app.post("/submit-party-details", (req, res) => {
 
 app.post("/submit-guest-list", (req, res) => {
   let guestDetails = req.body;
+  let guestUUID = uuidv4();
+
+  guestDetails["uuid"] = guestUUID;
 
   //this will add a new record - regardless of whether we are editing another one or not
   guestDetailsArray.push(guestDetails);
   //we therefore need to create an 'edit' pathway distinct to the 'add' one
+
+  console.log(guestDetailsArray);
 
   res.render("partyPlanning", {
     currentYear,
