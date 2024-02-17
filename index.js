@@ -19,6 +19,7 @@ let birthDate = null;
 let planetAge = [];
 let intervals = [];
 let partyDetailsArray = [];
+let guestDetailsArray = [];
 let guestList = [];
 
 //Function sourcing
@@ -74,6 +75,10 @@ app.post("/submit-party-details", (req, res) => {
 app.post("/submit-guest-list", (req, res) => {
   let guestDetails = req.body;
 
+  //this will add a new record - regardless of whether we are editing another one or not
+  guestDetailsArray.push(guestDetails);
+  //we therefore need to create an 'edit' pathway distinct to the 'add' one
+
   res.render("partyPlanning", {
     currentYear,
     partyFormContents,
@@ -81,7 +86,7 @@ app.post("/submit-guest-list", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestList,
+    guestDetailsArray,
   });
 });
 
