@@ -53,7 +53,7 @@ app.get("/party-planning", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestList,
+    guestDetailsArray,
   });
 });
 
@@ -69,7 +69,7 @@ app.post("/submit-party-details", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestList,
+    guestDetailsArray,
   });
 });
 

@@ -1,7 +1,35 @@
 <form class="party-box" method="post" action="/submit-guest-list">
   <h2>Guest list</h2>
   <div class="guest-list-container">
-    <%- include('guestList/guestListModalContents') %>
+    <%- include('guestList/guestListModalContents') %> <% for(id of
+    guestDetailsArray) { %>
+    <div class="guest-record-container">
+      <div class="guest-record-grid">
+        <div class="guest-record-details-container">
+          <div class="guest-record-name">
+            <%= id.firstName %> <%= id.lastName %>
+          </div>
+          <div class="guest-record-details">
+            Some key details to be added in a later PR.
+          </div>
+        </div>
+        <div class="guest-record-amendment-container">
+          <input
+            class="guest-record-button edit"
+            type="button"
+            value="Edit"
+            data-id="<%= id.uuid%>"
+          />
+          <input
+            class="guest-record-button delete"
+            type="button"
+            value="Delete"
+            data-id="<%= id.uuid%>"
+          />
+        </div>
+      </div>
+    </div>
+    <% }%>
   </div>
   <div class="submit-button-container">
     <input
@@ -11,6 +39,6 @@
     />
   </div>
   <div class="submit-button-container guest-list-add">
-    <input class="guest-list-add" type="button" value="Add a new guest" />
+    <input class="guest-list-add" type="button" value="Add guest" />
   </div>
 </form>
