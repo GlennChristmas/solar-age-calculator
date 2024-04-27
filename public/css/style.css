@@ -177,7 +177,7 @@
 .party-planner-page-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-auto-rows: repeat(2, minmax(10px, 600px));
   width: 80%;
   margin: 0 auto;
   max-width: 1200px;
