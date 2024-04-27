@@ -220,6 +220,7 @@
   justify-content: center;
   background-color: cadetblue;
   padding: 20px;
+  max-height: 600px;
 }
 
 .submit-button-container {
