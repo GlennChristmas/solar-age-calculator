@@ -37,7 +37,8 @@ import {
   planetImageNames,
   planetDemonyms,
 } from "./public/planetData.js";
-import { guestListModalContents } from "./public/guestListModalContents.js";
+
+import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
