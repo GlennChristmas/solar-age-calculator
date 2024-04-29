@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import { v4 as uuidv4 } from "uuid";
+import fs from "fs";
 
 const app = express();
 app.set("view engine", "ejs");
@@ -80,9 +81,19 @@ app.post("/submit-guest-list", (req, res) => {
 
   //this will add a new record - regardless of whether we are editing another one or not
   guestListCurrent.push(guestDetails);
-  //we therefore need to create an 'edit' pathway distinct to the 'add' one
 
-  console.log(guestListCurrent);
+  //implication is we are resaving the entire guestListCurrent every time a new record is added
+  fs.writeFile(
+    "./data/guestListCurrent.json",
+    JSON.stringify(guestListCurrent, null, 2),
+    (err) => {
+      if (err) {
+        console.error("Failed to update guest list", err);
+        res.status(500).send("Error updating the guest list.");
+        return;
+      }
+    }
+  );
 
   res.render("partyPlanning", {
     currentYear,
