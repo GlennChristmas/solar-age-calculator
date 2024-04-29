@@ -19,7 +19,7 @@ let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
 let partyDetailsArray = [];
-let guestDetailsArray = [];
+let guestListCurrent = [];
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
@@ -52,7 +52,7 @@ app.get("/party-planning", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestDetailsArray,
+    guestListCurrent,
   });
 });
 
@@ -68,7 +68,7 @@ app.post("/submit-party-details", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestDetailsArray,
+    guestListCurrent,
   });
 });
 
@@ -79,10 +79,10 @@ app.post("/submit-guest-list", (req, res) => {
   guestDetails["uuid"] = guestUUID;
 
   //this will add a new record - regardless of whether we are editing another one or not
-  guestDetailsArray.push(guestDetails);
+  guestListCurrent.push(guestDetails);
   //we therefore need to create an 'edit' pathway distinct to the 'add' one
 
-  console.log(guestDetailsArray);
+  console.log(guestListCurrent);
 
   res.render("partyPlanning", {
     currentYear,
@@ -91,7 +91,7 @@ app.post("/submit-guest-list", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestDetailsArray,
+    guestListCurrent,
   });
 });
 
