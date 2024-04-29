@@ -19,7 +19,6 @@ let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
 let partyDetailsArray = [];
-let guestListCurrent = [];
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
@@ -39,6 +38,7 @@ import {
 } from "./public/planetData.js";
 
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
+import guestListCurrent from "./data/guestListCurrent.json" assert { type: "json" };
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
