@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import { v4 as uuidv4 } from "uuid";
+import fs from "fs";
 
 const app = express();
 app.set("view engine", "ejs");
@@ -19,7 +20,6 @@ let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
 let partyDetailsArray = [];
-let guestDetailsArray = [];
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
@@ -37,7 +37,9 @@ import {
   planetImageNames,
   planetDemonyms,
 } from "./public/planetData.js";
-import { guestListModalContents } from "./public/guestListModalContents.js";
+
+import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
+import guestListCurrent from "./data/guestListCurrent.json" assert { type: "json" };
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
@@ -51,7 +53,7 @@ app.get("/party-planning", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestDetailsArray,
+    guestListCurrent,
   });
 });
 
@@ -67,7 +69,7 @@ app.post("/submit-party-details", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestDetailsArray,
+    guestListCurrent,
   });
 });
 
@@ -78,10 +80,20 @@ app.post("/submit-guest-list", (req, res) => {
   guestDetails["uuid"] = guestUUID;
 
   //this will add a new record - regardless of whether we are editing another one or not
-  guestDetailsArray.push(guestDetails);
-  //we therefore need to create an 'edit' pathway distinct to the 'add' one
+  guestListCurrent.push(guestDetails);
 
-  console.log(guestDetailsArray);
+  //implication is we are resaving the entire guestListCurrent every time a new record is added
+  fs.writeFile(
+    "./data/guestListCurrent.json",
+    JSON.stringify(guestListCurrent, null, 2),
+    (err) => {
+      if (err) {
+        console.error("Failed to update guest list", err);
+        res.status(500).send("Error updating the guest list.");
+        return;
+      }
+    }
+  );
 
   res.render("partyPlanning", {
     currentYear,
@@ -90,7 +102,7 @@ app.post("/submit-guest-list", (req, res) => {
     keyExists,
     getValueByKey,
     guestListModalContents,
-    guestDetailsArray,
+    guestListCurrent,
   });
 });
 
