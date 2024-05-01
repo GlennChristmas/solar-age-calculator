@@ -27,7 +27,6 @@ import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGen
 
 // Data sourcing
 import { modalData, modalKeyTitles } from "./public/modalData.js";
-import { partyFormContents } from "./public/partyFormContents.js";
 import { keyExists } from "./public/keyExists.js";
 import { getValueByKey } from "./public/getValueByKey.js";
 import { objectArrayWrapper } from "./public/objectArrayWrapper.js";
@@ -38,6 +37,7 @@ import {
   planetDemonyms,
 } from "./public/planetData.js";
 
+import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
 import guestListCurrent from "./data/guestListCurrent.json" assert { type: "json" };
 
