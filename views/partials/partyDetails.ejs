@@ -10,7 +10,7 @@
         <select name="<%=field.name%>">
           <% field.dropDownOptions.forEach(function(option) { %>
           <option value="<%= option %>"
-            <% const selectedStatus = keyExists(partyDetailsArray, field.name) ? getValueByKey(partyDetailsArray, field.name) : ""  %>
+            <% const selectedStatus = keyExists(partyDetailsCurrent, field.name) ? getValueByKey(partyDetailsCurrent, field.name) : ""  %>
             <%= selectedStatus == option ? "selected" : "" %>>
             <%= option %></option>
           <% }); %>
@@ -18,8 +18,8 @@
         <% } else { %>
         <div class="free-text-field full-width">
           <input type="text" name="<%=field.name%>" value="<%=
-          keyExists(partyDetailsArray, field.name) ?
-          getValueByKey(partyDetailsArray, field.name) : "" %>" />
+          keyExists(partyDetailsCurrent, field.name) ?
+          getValueByKey(partyDetailsCurrent, field.name) : "" %>" />
         </div>
         <% } %>
       </div>

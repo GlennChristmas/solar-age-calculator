@@ -19,7 +19,6 @@ let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
-let partyDetailsArray = [];
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
@@ -38,6 +37,7 @@ import {
 } from "./public/planetData.js";
 
 import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
+import partyDetailsCurrent from "./data/partyDetailsCurrent.json" assert { type: "json" };
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
 import guestListCurrent from "./data/guestListCurrent.json" assert { type: "json" };
 
@@ -49,7 +49,7 @@ app.get("/party-planning", (req, res) => {
   res.render("partyPlanning", {
     currentYear,
     partyFormContents,
-    partyDetailsArray,
+    partyDetailsCurrent,
     keyExists,
     getValueByKey,
     guestListModalContents,
@@ -60,12 +60,12 @@ app.get("/party-planning", (req, res) => {
 app.post("/submit-party-details", (req, res) => {
   let partyDetailsObject = req.body;
 
-  partyDetailsArray = objectArrayWrapper(partyDetailsObject);
+  partyDetailsCurrent = objectArrayWrapper(partyDetailsObject);
 
   res.render("partyPlanning", {
     currentYear,
     partyFormContents,
-    partyDetailsArray,
+    partyDetailsCurrent,
     keyExists,
     getValueByKey,
     guestListModalContents,
@@ -98,7 +98,7 @@ app.post("/submit-guest-list", (req, res) => {
   res.render("partyPlanning", {
     currentYear,
     partyFormContents,
-    partyDetailsArray,
+    partyDetailsCurrent,
     keyExists,
     getValueByKey,
     guestListModalContents,
