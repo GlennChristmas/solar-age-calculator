@@ -19,7 +19,8 @@ let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
-let partyDetailsArray = [];
+let partyDetailsCurrent = {};
+let guestListCurrent = {};
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
@@ -27,31 +28,38 @@ import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGen
 
 // Data sourcing
 import { modalData, modalKeyTitles } from "./public/modalData.js";
-import { partyFormContents } from "./public/partyFormContents.js";
 import { keyExists } from "./public/keyExists.js";
 import { getValueByKey } from "./public/getValueByKey.js";
-import { objectArrayWrapper } from "./public/objectArrayWrapper.js";
 import {
   planetAgeMultiples,
   planets,
   planetImageNames,
   planetDemonyms,
 } from "./public/planetData.js";
+import { loadPartyDetails } from "./public/loadPartyDetailsCurrent.js";
+import { loadGuestList } from "./public/loadGuestListCurrent.js";
+import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
+import { keyValueExtractor } from "./public/keyValueExtractor.js";
 
+import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
-import guestListCurrent from "./data/guestListCurrent.json" assert { type: "json" };
+import { saveGuestList } from "./public/saveGuestListCurrent.js";
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
 });
 
 app.get("/party-planning", (req, res) => {
+  partyDetailsCurrent = loadPartyDetails();
+  guestListCurrent = loadGuestList();
+
   res.render("partyPlanning", {
     currentYear,
     partyFormContents,
-    partyDetailsArray,
+    partyDetailsCurrent,
     keyExists,
     getValueByKey,
+    keyValueExtractor,
     guestListModalContents,
     guestListCurrent,
   });
@@ -60,14 +68,18 @@ app.get("/party-planning", (req, res) => {
 app.post("/submit-party-details", (req, res) => {
   let partyDetailsObject = req.body;
 
-  partyDetailsArray = objectArrayWrapper(partyDetailsObject);
+  partyDetailsCurrent = partyDetailsObject;
+  console.log(partyDetailsCurrent);
+
+  savePartyDetails(partyDetailsCurrent);
 
   res.render("partyPlanning", {
     currentYear,
     partyFormContents,
-    partyDetailsArray,
+    partyDetailsCurrent,
     keyExists,
     getValueByKey,
+    keyValueExtractor,
     guestListModalContents,
     guestListCurrent,
   });
@@ -82,25 +94,15 @@ app.post("/submit-guest-list", (req, res) => {
   //this will add a new record - regardless of whether we are editing another one or not
   guestListCurrent.push(guestDetails);
 
-  //implication is we are resaving the entire guestListCurrent every time a new record is added
-  fs.writeFile(
-    "./data/guestListCurrent.json",
-    JSON.stringify(guestListCurrent, null, 2),
-    (err) => {
-      if (err) {
-        console.error("Failed to update guest list", err);
-        res.status(500).send("Error updating the guest list.");
-        return;
-      }
-    }
-  );
+  saveGuestList(guestListCurrent);
 
   res.render("partyPlanning", {
     currentYear,
     partyFormContents,
-    partyDetailsArray,
+    partyDetailsCurrent,
     keyExists,
     getValueByKey,
+    keyValueExtractor,
     guestListModalContents,
     guestListCurrent,
   });
