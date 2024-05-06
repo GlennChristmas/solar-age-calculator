@@ -30,7 +30,6 @@ import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGen
 import { modalData, modalKeyTitles } from "./public/modalData.js";
 import { keyExists } from "./public/keyExists.js";
 import { getValueByKey } from "./public/getValueByKey.js";
-import { objectArrayWrapper } from "./public/objectArrayWrapper.js";
 import {
   planetAgeMultiples,
   planets,
