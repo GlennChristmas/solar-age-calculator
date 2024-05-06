@@ -24,3 +24,6 @@ This will introduce a new page for the user to visit that will help them host th
 
 ## Database storage
 Once I have completed learning on database integration, I will then aim to integrate data recorded (see above) into a database in order to enable persistent storage.
+
+## Log In
+Once I have integrated a database, I will look to add a log in system.
