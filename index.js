@@ -19,6 +19,8 @@ let currentDate = new Date();
 let currentYear = currentDate.getFullYear();
 let birthDate = null;
 let planetAge = [];
+let partyDetailsCurrent = {};
+let guestListCurrent = {};
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
