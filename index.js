@@ -66,49 +66,6 @@ app.get("/party-planning", (req, res) => {
   });
 });
 
-app.post("/submit-party-details", (req, res) => {
-  let partyDetailsObject = req.body;
-
-  partyDetailsCurrent = partyDetailsObject;
-  console.log(partyDetailsCurrent);
-
-  savePartyDetails(partyDetailsCurrent);
-
-  res.render("partyPlanning", {
-    currentYear,
-    partyFormContents,
-    partyDetailsCurrent,
-    keyExists,
-    getValueByKey,
-    keyValueExtractor,
-    guestListModalContents,
-    guestListCurrent,
-  });
-});
-
-app.post("/submit-guest-list", (req, res) => {
-  let guestDetails = req.body;
-  let guestUUID = uuidv4();
-
-  guestDetails["uuid"] = guestUUID;
-
-  //this will add a new record - regardless of whether we are editing another one or not
-  guestListCurrent.push(guestDetails);
-
-  saveGuestList(guestListCurrent);
-
-  res.render("partyPlanning", {
-    currentYear,
-    partyFormContents,
-    partyDetailsCurrent,
-    keyExists,
-    getValueByKey,
-    keyValueExtractor,
-    guestListModalContents,
-    guestListCurrent,
-  });
-});
-
 app.post("/submit-birthdate", (req, res) => {
   let birthDate = req.body.birthDate;
   console.log("Birthdate submitted:", birthDate);
@@ -147,6 +104,47 @@ app.post("/submit-birthdate", (req, res) => {
     modalData,
     modalKeyTitles,
   });
+});
+
+app.post("/submit-party-details", (req, res) => {
+  let partyDetailsObject = req.body;
+
+  partyDetailsCurrent = partyDetailsObject;
+  console.log(partyDetailsCurrent);
+
+  savePartyDetails(partyDetailsCurrent);
+
+  res.redirect("party-planning");
+});
+
+app.post("/submit-guest-list", (req, res) => {
+  let guestDetails = req.body;
+  let guestUUID = uuidv4();
+
+  guestDetails["uuid"] = guestUUID;
+
+  //this will add a new record - regardless of whether we are editing another one or not
+  guestListCurrent.push(guestDetails);
+
+  saveGuestList(guestListCurrent);
+
+  //amended as redirect, rather than re-render required for deletion to work (lightbulb moment as I then realised should be applied elsewhere!)
+  res.redirect("party-planning");
+});
+
+app.post("/delete-guest", (req, res) => {
+  let myKey = req.body.recordUUID;
+
+  let deletionIndex = arrayElementIndexFinder(guestListCurrent, myKey);
+
+  let guestListCurrentWithDeletion = arrayElementDeleter(
+    guestListCurrent,
+    deletionIndex
+  );
+
+  saveGuestList(guestListCurrentWithDeletion);
+
+  res.redirect("party-planning");
 });
 
 const PORT = process.env.PORT || 4000;
