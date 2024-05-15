@@ -3,7 +3,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import { v4 as uuidv4 } from "uuid";
-import fs from "fs";
 
 const app = express();
 app.set("view engine", "ejs");
@@ -40,6 +39,8 @@ import { loadPartyDetails } from "./public/loadPartyDetailsCurrent.js";
 import { loadGuestList } from "./public/loadGuestListCurrent.js";
 import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
 import { keyValueExtractor } from "./public/keyValueExtractor.js";
+import { arrayElementIndexFinder } from "./public/arrayElementIndexFinder.js";
+import { arrayElementDeleter } from "./public/arrayElementDeleter.js";
 
 import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
@@ -52,49 +53,6 @@ app.get("/", (req, res) => {
 app.get("/party-planning", (req, res) => {
   partyDetailsCurrent = loadPartyDetails();
   guestListCurrent = loadGuestList();
-
-  res.render("partyPlanning", {
-    currentYear,
-    partyFormContents,
-    partyDetailsCurrent,
-    keyExists,
-    getValueByKey,
-    keyValueExtractor,
-    guestListModalContents,
-    guestListCurrent,
-  });
-});
-
-app.post("/submit-party-details", (req, res) => {
-  let partyDetailsObject = req.body;
-
-  partyDetailsCurrent = partyDetailsObject;
-  console.log(partyDetailsCurrent);
-
-  savePartyDetails(partyDetailsCurrent);
-
-  res.render("partyPlanning", {
-    currentYear,
-    partyFormContents,
-    partyDetailsCurrent,
-    keyExists,
-    getValueByKey,
-    keyValueExtractor,
-    guestListModalContents,
-    guestListCurrent,
-  });
-});
-
-app.post("/submit-guest-list", (req, res) => {
-  let guestDetails = req.body;
-  let guestUUID = uuidv4();
-
-  guestDetails["uuid"] = guestUUID;
-
-  //this will add a new record - regardless of whether we are editing another one or not
-  guestListCurrent.push(guestDetails);
-
-  saveGuestList(guestListCurrent);
 
   res.render("partyPlanning", {
     currentYear,
@@ -146,6 +104,47 @@ app.post("/submit-birthdate", (req, res) => {
     modalData,
     modalKeyTitles,
   });
+});
+
+app.post("/submit-party-details", (req, res) => {
+  let partyDetailsObject = req.body;
+
+  partyDetailsCurrent = partyDetailsObject;
+  console.log(partyDetailsCurrent);
+
+  savePartyDetails(partyDetailsCurrent);
+
+  res.redirect("party-planning");
+});
+
+app.post("/submit-guest-list", (req, res) => {
+  let guestDetails = req.body;
+  let guestUUID = uuidv4();
+
+  guestDetails["uuid"] = guestUUID;
+
+  //this will add a new record - regardless of whether we are editing another one or not
+  guestListCurrent.push(guestDetails);
+
+  saveGuestList(guestListCurrent);
+
+  //amended as redirect, rather than re-render required for deletion to work (lightbulb moment as I then realised should be applied elsewhere!)
+  res.redirect("party-planning");
+});
+
+app.post("/delete-guest", (req, res) => {
+  let myKey = req.body.recordUUID;
+
+  let deletionIndex = arrayElementIndexFinder(guestListCurrent, myKey);
+
+  let guestListCurrentWithDeletion = arrayElementDeleter(
+    guestListCurrent,
+    deletionIndex
+  );
+
+  saveGuestList(guestListCurrentWithDeletion);
+
+  res.redirect("party-planning");
 });
 
 const PORT = process.env.PORT || 4000;
