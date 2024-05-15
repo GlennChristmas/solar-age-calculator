@@ -3,7 +3,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import { v4 as uuidv4 } from "uuid";
-import fs from "fs";
 
 const app = express();
 app.set("view engine", "ejs");
@@ -40,6 +39,8 @@ import { loadPartyDetails } from "./public/loadPartyDetailsCurrent.js";
 import { loadGuestList } from "./public/loadGuestListCurrent.js";
 import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
 import { keyValueExtractor } from "./public/keyValueExtractor.js";
+import { arrayElementIndexFinder } from "./public/arrayElementIndexFinder.js";
+import { arrayElementDeleter } from "./public/arrayElementDeleter.js";
 
 import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
