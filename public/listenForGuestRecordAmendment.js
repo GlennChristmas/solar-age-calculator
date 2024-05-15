@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           //required for DOM to update when record is deleted - as fetch more ordinarily used in single page applications
-          window.location.reload();
+          location.reload();
         })
         .then((data) => {
           console.log("Success:", data);
