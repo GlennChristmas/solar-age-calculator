@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const guestRecordDelete = document.querySelectorAll(
     ".guest-record-button.delete"
   );
+  const guestListAdd = document.querySelector(".guest-list-add");
+  const guestlistModal = document.querySelector(".guest-list-modal");
+  const guestListSubmit = document.querySelector(".guest-list-submit");
 
   //listen out for guest record deletions
   for (let i = 0; i < guestRecordDelete.length; i++) {
@@ -35,6 +38,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
         })
         .catch((error) => {
           console.error("Error:", error);
+        });
+    });
+  }
+
+  //listen out for guest record edits
+  for (let i = 0; i < guestRecordEdit.length; i++) {
+    guestRecordEdit[i].addEventListener("click", (event) => {
+      var recordUUID = event.currentTarget.getAttribute("data-id");
+      guestlistModal.classList.remove("hidden");
+      guestListSubmit.classList.remove("hidden");
+      guestListAdd.classList.add("hidden");
+
+      document
+        .querySelectorAll(".guest-record-container")
+        .forEach((element) => {
+          element.classList.add("hidden");
         });
     });
   }
