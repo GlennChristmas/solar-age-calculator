@@ -6,12 +6,15 @@
       <% if(field.dropDownOptions){ %>
       <select name="<%=field.name%>">
         <% field.dropDownOptions.forEach(function(option) { %>
-        <option value="<%= option %>"><%= option %></option>
-        <% }); %>
+          <option value="<%= option %>" 
+            <%= (typeof elementForEdit !== 'undefined' && elementForEdit[field.name] === option) ? 'selected' : '' %>>
+          <%= option %></option>
+          <% }); %>
       </select>
       <% } else { %>
       <div class="free-text-field full-width">
-        <input type="text" name="<%=field.name%>" />
+        <input type="text" name="<%=field.name%>" value=
+        "<%= typeof elementForEdit !== 'undefined' ? elementForEdit[field.name] : ''%>"/>
       </div>
       <% } %>
     </div>
