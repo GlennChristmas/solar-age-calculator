@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     ".guest-record-button.delete"
   );
   const guestListAdd = document.querySelector(".guest-list-add");
-  const guestlistModal = document.querySelector(".guest-list-modal");
+  const guestListModal = document.querySelector(".guest-list-modal");
   const guestListSubmit = document.querySelector(".guest-list-submit");
 
   //listen out for guest record deletions
@@ -45,15 +45,67 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //listen out for guest record edits
   for (let i = 0; i < guestRecordEdit.length; i++) {
     guestRecordEdit[i].addEventListener("click", (event) => {
-      var recordUUID = event.currentTarget.getAttribute("data-id");
-      guestlistModal.classList.remove("hidden");
-      guestListSubmit.classList.remove("hidden");
-      guestListAdd.classList.add("hidden");
+      let recordUUID = event.currentTarget.getAttribute("data-id");
 
-      document
-        .querySelectorAll(".guest-record-container")
-        .forEach((element) => {
-          element.classList.add("hidden");
+      fetch("/guest-edit-send-uuid", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ guestId: recordUUID }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              "Technical issues extracting the guest record, sorry."
+            );
+          }
+          //console.log(response.json);
+          return response.json();
+        })
+        .then((data) => {
+          console.log("hello there!");
+          console.log("Success: ", data);
+          return fetch("/party-planning-guest-edit", {
+            method: "GET",
+          });
+        })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              "Technical issues loading the page to edit the guest record, sorry."
+            );
+          }
+          return response.text();
+        })
+        .then((html) => {
+          console.log("GET request was successful: ");
+          //use the generated html to overwrite existing client-side contents
+          document.open();
+          document.write(html);
+          document.close();
+        })
+        .then((html) => {
+          console.log(
+            "Now rerendering party-planning page with guest list element to edit..."
+          );
+          //unfortunately the previous promise means the document has been replaced
+          //we'll therefore need to remap guestListAdd/Modal/Submit again - we probably ought to find a cleaner way of doing this
+          const guestListAdd = document.querySelector(".guest-list-add");
+          const guestListModal = document.querySelector(".guest-list-modal");
+          const guestListSubmit = document.querySelector(".guest-list-submit");
+          guestListModal.classList.remove("hidden");
+          guestListSubmit.classList.remove("hidden");
+          guestListAdd.classList.add("hidden");
+
+          document
+            .querySelectorAll(".guest-record-container")
+            .forEach((element) => {
+              element.classList.add("hidden");
+            });
+        })
+        .catch((error) => {
+          console.error("Error: ", error);
         });
     });
   }
