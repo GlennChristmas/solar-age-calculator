@@ -68,6 +68,16 @@ app.get("/party-planning", (req, res) => {
 });
 
 app.get("/party-planning-guest-edit", (req, res) => {
+  //remove the guestListCurrent element we are amending to avoid duplication
+  //note this will need augmenting if we wish to allow users to 'cancel' an edit rather than always submit
+  let uuidToDelete = elementForEdit.uuid;
+  let elementIndex = arrayElementIndexFinder(guestListCurrent, uuidToDelete);
+  let tempGuestListCurrent = arrayElementDeleter(
+    guestListCurrent,
+    elementIndex
+  );
+  guestListCurrent = tempGuestListCurrent;
+
   res.render("partyPlanning", {
     currentYear,
     partyFormContents,
