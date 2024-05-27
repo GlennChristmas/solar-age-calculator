@@ -20,6 +20,7 @@ let birthDate = null;
 let planetAge = [];
 let partyDetailsCurrent = {};
 let guestListCurrent = [];
+let elementForEdit = {};
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
@@ -63,6 +64,46 @@ app.get("/party-planning", (req, res) => {
     keyValueExtractor,
     guestListModalContents,
     guestListCurrent,
+  });
+});
+
+app.get("/party-planning-guest-edit", (req, res) => {
+  //remove the guestListCurrent element we are amending to avoid duplication
+  //note this will need augmenting if we wish to allow users to 'cancel' an edit rather than always submit
+  let uuidToDelete = elementForEdit.uuid;
+  let elementIndex = arrayElementIndexFinder(guestListCurrent, uuidToDelete);
+  let tempGuestListCurrent = arrayElementDeleter(
+    guestListCurrent,
+    elementIndex
+  );
+  guestListCurrent = tempGuestListCurrent;
+
+  res.render("partyPlanning", {
+    currentYear,
+    partyFormContents,
+    partyDetailsCurrent,
+    keyExists,
+    getValueByKey,
+    keyValueExtractor,
+    guestListModalContents,
+    guestListCurrent,
+    elementForEdit,
+  });
+});
+
+app.post("/guest-edit-send-uuid", (req, res) => {
+  let guestId = req.body.guestId;
+  //find the specific element in guestListCurrent we wish to edit
+  //note - this needs handling for errors, non-matches, etc.
+  //also some acknowledgement in PR that use of attribute probably not the typical way/most secure way etc
+  let elementIndex = arrayElementIndexFinder(guestListCurrent, guestId);
+  elementForEdit = guestListCurrent[elementIndex];
+
+  console.log(elementForEdit);
+
+  res.status(200).json({
+    message: "Guest found for edit",
+    elementForEdit: elementForEdit,
   });
 });
 
