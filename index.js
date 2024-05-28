@@ -36,7 +36,7 @@ import {
 } from "./public/data/planetData.js";
 import { loadPartyDetails } from "./src/loadPartyDetails.js";
 import { loadGuestList } from "./src/loadGuestList.js";
-import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
+import { savePartyDetails } from "./src/savePartyDetails.js";
 import { extractKeyValueFromArray } from "./src/extractKeyValueFromArray.js";
 import { findIndexInArray } from "./src/arrayElementIndexFinder.js";
 import { removeElementFromArray } from "./src/removeElementFromArray.js";
