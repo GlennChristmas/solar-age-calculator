@@ -5,9 +5,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const guestRecordDelete = document.querySelectorAll(
     ".guest-record-button.delete"
   );
-  const guestListAdd = document.querySelector(".guest-list-add");
-  const guestListModal = document.querySelector(".guest-list-modal");
-  const guestListSubmit = document.querySelector(".guest-list-submit");
 
   //listen out for guest record deletions
   for (let i = 0; i < guestRecordDelete.length; i++) {
@@ -60,7 +57,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
               "Technical issues extracting the guest record, sorry."
             );
           }
-          //console.log(response.json);
           return response.json();
         })
         .then((data) => {
