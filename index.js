@@ -23,8 +23,8 @@ let guestListCurrent = [];
 let elementForEdit = {};
 
 //Function sourcing
-import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculator.js";
-import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGenerator.js";
+import { nextPlanetAgeDaysCalculator } from "./src/helpers/nextPlanetAgeDaysCalculator.js";
+import { birthdayIntervalTextGenerator } from "./src/helpers/birthdayIntervalTextGenerator.js";
 
 // Data sourcing
 import { modalData, modalKeyTitles } from "./public/data/modalData.js";
