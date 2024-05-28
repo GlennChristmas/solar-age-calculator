@@ -40,7 +40,7 @@ import { loadPartyDetails } from "./public/loadPartyDetailsCurrent.js";
 import { loadGuestList } from "./public/loadGuestListCurrent.js";
 import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
 import { keyValueExtractor } from "./public/keyValueExtractor.js";
-import { arrayElementIndexFinder } from "./public/arrayElementIndexFinder.js";
+import { findIndexInArray } from "./src/arrayElementIndexFinder.js";
 import { removeElementFromArray } from "./src/removeElementFromArray.js";
 
 import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
@@ -71,7 +71,7 @@ app.get("/party-planning-guest-edit", (req, res) => {
   //remove the guestListCurrent element we are amending to avoid duplication
   //note this will need augmenting if we wish to allow users to 'cancel' an edit rather than always submit
   let uuidToDelete = elementForEdit.uuid;
-  let elementIndex = arrayElementIndexFinder(guestListCurrent, uuidToDelete);
+  let elementIndex = findIndexInArray(guestListCurrent, uuidToDelete);
   let tempGuestListCurrent = removeElementFromArray(
     guestListCurrent,
     elementIndex
@@ -96,7 +96,7 @@ app.post("/guest-edit-send-uuid", (req, res) => {
   //find the specific element in guestListCurrent we wish to edit
   //note - this needs handling for errors, non-matches, etc.
   //also some acknowledgement in PR that use of attribute probably not the typical way/most secure way etc
-  let elementIndex = arrayElementIndexFinder(guestListCurrent, guestId);
+  let elementIndex = findIndexInArray(guestListCurrent, guestId);
   elementForEdit = guestListCurrent[elementIndex];
 
   console.log(elementForEdit);
@@ -176,7 +176,7 @@ app.post("/submit-guest-list", (req, res) => {
 app.post("/delete-guest", (req, res) => {
   let myKey = req.body.recordUUID;
 
-  let deletionIndex = arrayElementIndexFinder(guestListCurrent, myKey);
+  let deletionIndex = findIndexInArray(guestListCurrent, myKey);
 
   let guestListCurrentWithDeletion = removeElementFromArray(
     guestListCurrent,

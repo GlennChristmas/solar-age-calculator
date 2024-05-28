@@ -1,4 +1,4 @@
-export const arrayElementIndexFinder = function (arr, key) {
+export const findIndexInArray = function (arr, key) {
   //implementing copy on write approach from Grokking Simplicity
   let newArr = arr.slice();
 
