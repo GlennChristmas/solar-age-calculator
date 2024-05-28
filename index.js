@@ -41,7 +41,7 @@ import { loadGuestList } from "./public/loadGuestListCurrent.js";
 import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
 import { keyValueExtractor } from "./public/keyValueExtractor.js";
 import { arrayElementIndexFinder } from "./public/arrayElementIndexFinder.js";
-import { arrayElementDeleter } from "./public/arrayElementDeleter.js";
+import { removeElementFromArray } from "./src/removeElementFromArray.js";
 
 import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
@@ -72,7 +72,7 @@ app.get("/party-planning-guest-edit", (req, res) => {
   //note this will need augmenting if we wish to allow users to 'cancel' an edit rather than always submit
   let uuidToDelete = elementForEdit.uuid;
   let elementIndex = arrayElementIndexFinder(guestListCurrent, uuidToDelete);
-  let tempGuestListCurrent = arrayElementDeleter(
+  let tempGuestListCurrent = removeElementFromArray(
     guestListCurrent,
     elementIndex
   );
@@ -178,7 +178,7 @@ app.post("/delete-guest", (req, res) => {
 
   let deletionIndex = arrayElementIndexFinder(guestListCurrent, myKey);
 
-  let guestListCurrentWithDeletion = arrayElementDeleter(
+  let guestListCurrentWithDeletion = removeElementFromArray(
     guestListCurrent,
     deletionIndex
   );
