@@ -35,7 +35,7 @@ import {
   planetDemonyms,
 } from "./public/planetData.js";
 import { loadPartyDetails } from "./public/loadPartyDetailsCurrent.js";
-import { loadGuestList } from "./public/loadGuestListCurrent.js";
+import { loadGuestList } from "./src/loadGuestList.js";
 import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
 import { extractKeyValueFromArray } from "./src/extractKeyValueFromArray.js";
 import { findIndexInArray } from "./src/arrayElementIndexFinder.js";
