@@ -28,7 +28,6 @@ import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGen
 
 // Data sourcing
 import { modalData, modalKeyTitles } from "./public/modalData.js";
-import { keyExists } from "./public/keyExists.js";
 import {
   planetAgeMultiples,
   planets,
@@ -58,7 +57,6 @@ app.get("/party-planning", (req, res) => {
     currentYear,
     partyFormContents,
     partyDetailsCurrent,
-    keyExists,
     extractKeyValueFromArray,
     guestListModalContents,
     guestListCurrent,
@@ -80,7 +78,6 @@ app.get("/party-planning-guest-edit", (req, res) => {
     currentYear,
     partyFormContents,
     partyDetailsCurrent,
-    keyExists,
     extractKeyValueFromArray,
     guestListModalContents,
     guestListCurrent,
