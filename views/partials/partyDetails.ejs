@@ -6,7 +6,7 @@
       <div class="question-title"><%= field.questionTitle %></div>
       <% if(field.dropDownOptions){ %>
       <select name="<%=field.name%>">
-        <% let previousValue = keyValueExtractor(partyDetailsCurrent,field.name) %> 
+        <% let previousValue = extractKeyValueFromArray(partyDetailsCurrent,field.name) %> 
         <% field.dropDownOptions.forEach(function(option) { %> 
           <% let selectionStatus = (previousValue == option) ? "selected" : "" %> 
           <option value="<%= option %>" <%=selectionStatus %>><%= option %></option>
@@ -14,7 +14,7 @@
       </select>
       <% } else { %>
       <div class="free-text-field full-width">
-        <% let previousValue = keyValueExtractor(partyDetailsCurrent, field.name) %>
+        <% let previousValue = extractKeyValueFromArray(partyDetailsCurrent, field.name) %>
         <% console.log(previousValue) %>
         <input type="text" name="<%=field.name%>" value= "<%=previousValue%>" />
       </div>

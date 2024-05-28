@@ -1,4 +1,4 @@
-export const arrayElementDeleter = function (array, index) {
+export const removeElementFromArray = function (array, index) {
   const newArray = array.slice();
   if (index >= 0 && index < newArray.length) {
     newArray.splice(index, 1);
