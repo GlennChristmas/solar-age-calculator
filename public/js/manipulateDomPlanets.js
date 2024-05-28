@@ -1,4 +1,4 @@
-import { replaceModalTitles as replaceModalTitles } from "/replaceModalTitles.js";
+import { replaceModalTitles as replaceModalTitles } from "/js/replaceModalTitles.js";
 import { modalKeyTitles } from "/data/modalData.js";
 
 //event listener needs to be added as not all DOM content referenced will be loaded immediately
