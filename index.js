@@ -39,7 +39,7 @@ import {
 import { loadPartyDetails } from "./public/loadPartyDetailsCurrent.js";
 import { loadGuestList } from "./public/loadGuestListCurrent.js";
 import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
-import { keyValueExtractor } from "./public/keyValueExtractor.js";
+import { extractKeyValueFromArray } from "./src/extractKeyValueFromArray.js";
 import { findIndexInArray } from "./src/arrayElementIndexFinder.js";
 import { removeElementFromArray } from "./src/removeElementFromArray.js";
 
@@ -61,7 +61,7 @@ app.get("/party-planning", (req, res) => {
     partyDetailsCurrent,
     keyExists,
     getValueByKey,
-    keyValueExtractor,
+    extractKeyValueFromArray,
     guestListModalContents,
     guestListCurrent,
   });
@@ -84,7 +84,7 @@ app.get("/party-planning-guest-edit", (req, res) => {
     partyDetailsCurrent,
     keyExists,
     getValueByKey,
-    keyValueExtractor,
+    extractKeyValueFromArray,
     guestListModalContents,
     guestListCurrent,
     elementForEdit,

@@ -1,4 +1,4 @@
-export const keyValueExtractor = function (arr, fieldName) {
+export const extractKeyValueFromArray = function (arr, fieldName) {
   let extractedKeyValue = arr[fieldName];
 
   if (extractedKeyValue == undefined) {
