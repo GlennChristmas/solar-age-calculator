@@ -43,7 +43,7 @@ import { removeElementFromArray } from "./src/removeElementFromArray.js";
 
 import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
-import { saveGuestList } from "./public/saveGuestListCurrent.js";
+import { saveGuestList } from "./src/saveGuestList.js";
 
 app.get("/", (req, res) => {
   res.render("index", { currentYear, birthDate });
