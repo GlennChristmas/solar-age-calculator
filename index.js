@@ -27,7 +27,7 @@ import { nextPlanetAgeDaysCalculator } from "./helpers/nextPlanetAgeDaysCalculat
 import { birthdayIntervalTextGenerator } from "./helpers/birthdayIntervalTextGenerator.js";
 
 // Data sourcing
-import { modalData, modalKeyTitles } from "./public/modalData.js";
+import { modalData, modalKeyTitles } from "./public/data/modalData.js";
 import {
   planetAgeMultiples,
   planets,
