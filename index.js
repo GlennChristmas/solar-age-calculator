@@ -34,7 +34,7 @@ import {
   planetImageNames,
   planetDemonyms,
 } from "./public/planetData.js";
-import { loadPartyDetails } from "./public/loadPartyDetailsCurrent.js";
+import { loadPartyDetails } from "./src/loadPartyDetails.js";
 import { loadGuestList } from "./src/loadGuestList.js";
 import { savePartyDetails } from "./public/savePartyDetailsCurrent.js";
 import { extractKeyValueFromArray } from "./src/extractKeyValueFromArray.js";
