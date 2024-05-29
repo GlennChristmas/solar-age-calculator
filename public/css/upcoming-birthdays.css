@@ -1,0 +1,64 @@
+.birthdays-background {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 500px;
+  background-color: black;
+  padding-top: 20px;
+}
+
+.upcoming-birthdays-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  background-color: cadetblue;
+  color: white;
+  font-family: "Space Grotesk", sans-serif;
+  gap: 10px;
+}
+
+.upcoming-birthdays-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 500px);
+  grid-auto-rows: minmax(100px, auto);
+  grid-auto-columns: minmax(100px, auto);
+  gap: 10px;
+}
+
+.upcoming-birthday-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background-color: #b0cc5a;
+  padding: 10px;
+  border: 1px solid #ccc;
+  color: black;
+}
+
+.upcoming-birthday-planet {
+  font-weight: 800;
+  font-size: 2rem;
+  padding-bottom: 10px;
+}
+
+.upcoming-birthday-button {
+  width: 100%;
+  padding: 8px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  color: #333;
+}
+
+.upcoming-birthday-button:hover {
+  background-color: #d8d8d8;
+}
