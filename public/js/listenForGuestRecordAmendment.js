@@ -6,36 +6,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
     ".guest-record-button.delete"
   );
 
-  //listen out for guest record deletions
+  //Listen out for guest record deletions
   for (let i = 0; i < guestRecordDelete.length; i++) {
-    guestRecordDelete[i].addEventListener("click", (event) => {
-      //extract record id from element and assign to var
-      var recordUUID = event.currentTarget.getAttribute("data-id");
+    guestRecordDelete[i].addEventListener("click", async (event) => {
+      try {
+        //Extract record id from element and assign to var
+        var recordUUID = event.currentTarget.getAttribute("data-id");
+        let jsonString = JSON.stringify({ recordUUID: recordUUID });
 
-      //in order to send something to the server, it must be in a string format - JSON is often used for this
-      let jsonString = JSON.stringify({ recordUUID: recordUUID });
+        //Now send a POST request to server with body contents being the jsonString generated above
 
-      //now send a POST request to server with body contents being the jsonString generated above
-      fetch("/delete-guest", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: jsonString,
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          //required for DOM to update when record is deleted - as fetch more ordinarily used in single page applications
-          location.reload();
-        })
-        .then((data) => {
-          console.log("Success:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
+        let response = await fetch("/delete-guest", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: jsonString,
         });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        //required for DOM to update when record is deleted
+        location.reload();
+
+        let data = await response.json();
+        console.log("Success: ", data);
+      } catch (error) {
+        console.error("Error: ", error);
+      }
     });
   }
 
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           document.write(html);
           document.close();
         })
-        .then((html) => {
+        .then(() => {
           console.log(
             "Now rerendering party-planning page with guest list element to edit..."
           );
