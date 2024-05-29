@@ -93,8 +93,6 @@ app.post("/guest-edit-send-uuid", (req, res) => {
   let elementIndex = findIndexInArray(guestListCurrent, guestId);
   elementForEdit = guestListCurrent[elementIndex];
 
-  console.log(elementForEdit);
-
   res.status(200).json({
     message: "Guest found for edit",
     elementForEdit: elementForEdit,
