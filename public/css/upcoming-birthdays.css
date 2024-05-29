@@ -1,22 +1,23 @@
 .birthdays-background {
+  width: 80%;
   display: flex;
-  width: 90%;
   margin: 0 auto;
   max-width: 1200px;
-  height: 500px;
+  height: auto;
   background-color: black;
-  padding-top: 20px;
+  padding-top: 50px;
 }
 
 .upcoming-birthdays-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: auto;
+  padding: 20px;
   margin: 0 auto;
   max-width: 1200px;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: auto;
   background-color: cadetblue;
   color: white;
   font-family: "Space Grotesk", sans-serif;
@@ -25,10 +26,21 @@
 
 .upcoming-birthdays-grid {
   display: grid;
-  grid-template-columns: repeat(2, 500px);
+  grid-template-columns: repeat(2, auto);
   grid-auto-rows: minmax(100px, auto);
-  grid-auto-columns: minmax(100px, auto);
   gap: 10px;
+}
+
+@media (max-width: 1500px) {
+  .upcoming-birthdays-grid {
+    grid-template-columns: repeat(1, auto);
+  }
+}
+
+.upcoming-birthday-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .upcoming-birthday-details {
@@ -39,6 +51,19 @@
   padding: 10px;
   border: 1px solid #ccc;
   color: black;
+}
+
+@media (min-width: 1500px) {
+  .upcoming-birthday-details {
+    width: 500px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .upcoming-birthday-details {
+    justify-content: center;
+    width: 90%;
+  }
 }
 
 .upcoming-birthday-planet {
