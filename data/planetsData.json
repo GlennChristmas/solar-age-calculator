@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Mercury",
+    "demonym": "mercurian",
+    "earthAgeMultiple": 4.1520186907273384,
+    "image": "/assets/nasa-mercury.jpg",
+    "planetType": "Rocky world",
+    "planetEarthFit": 0.056,
+    "planetMoons": 0,
+    "planetFunFact": "Mercury has the most extreme temperature fluctuations in the Solar System, ranging from -173°C at night to 427°C during the day."
+  },
+  {
+    "name": "Venus",
+    "demonym": "venusian",
+    "earthAgeMultiple": 1.6254948859817744,
+    "image": "/assets/nasa-venus.jpg",
+    "planetType": "Rocky world",
+    "planetEarthFit": 0.857,
+    "planetMoons": 0,
+    "planetFunFact": "Venus rotates on its axis in the opposite direction to most planets, meaning the Sun rises in the west and sets in the east."
+  },
+  {
+    "name": "Earth",
+    "demonym": "terran",
+    "earthAgeMultiple": 1,
+    "image": "/assets/nasa-earth.jpg",
+    "planetType": "Rocky world",
+    "planetFunFact": "Earth is the only planet in our Solar System known to support life and has the most liquid water."
+  },
+  {
+    "name": "Mars",
+    "demonym": "martian",
+    "earthAgeMultiple": 0.5316751872932182,
+    "image": "/assets/nasa-mars.jpg",
+    "planetType": "Rocky world",
+    "planetEarthFit": 0.151,
+    "planetMoons": 2,
+    "planetFunFact": "Mars is home to Olympus Mons, the tallest volcano and largest mountain in the Solar System."
+  },
+  {
+    "name": "Jupiter",
+    "demonym": "jovian",
+    "earthAgeMultiple": 0.0842984451573283,
+    "image": "/assets/jupiter.jpg",
+    "planetType": "Gas giant",
+    "planetEarthFit": 1321,
+    "planetMoons": 79,
+    "planetFunFact": "Jupiter has the Great Red Spot, a gigantic storm larger than Earth that has been raging for hundreds of years."
+  },
+  {
+    "name": "Saturn",
+    "demonym": "saturnian",
+    "earthAgeMultiple": 0.0339587424371334,
+    "image": "/assets/nasa-saturn.jpg",
+    "planetType": "Gas giant",
+    "planetEarthFit": 764,
+    "planetMoons": 82,
+    "planetFunFact": "Saturn's rings are made up of billions of ice and rock particles, and are the most extensive ring system of any planet."
+  },
+  {
+    "name": "Uranus",
+    "demonym": "uranian",
+    "earthAgeMultiple": 0.0119047619047619,
+    "image": "/assets/nasa-uranus.jpg",
+    "planetType": "Ice giant",
+    "planetEarthFit": 63,
+    "planetMoons": 27,
+    "planetFunFact": "Uranus is unique for its sideways rotation, essentially orbiting the Sun on its side."
+  },
+  {
+    "name": "Neptune",
+    "demonym": "neptunian",
+    "earthAgeMultiple": 0.0060682807808081,
+    "image": "/assets/nasa-neptune.jpg",
+    "planetType": "Ice giant",
+    "planetEarthFit": 58,
+    "planetMoons": 14,
+    "planetFunFact": "Neptune has the fastest winds in the Solar System, reaching speeds of up to 2,100 kilometers per hour."
+  }
+]

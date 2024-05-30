@@ -21,6 +21,8 @@ let planetAge = [];
 let partyDetailsCurrent = {};
 let guestListCurrent = [];
 let elementForEdit = {};
+let planetBirthdayInfo = [];
+let nNearestBirthdays = [];
 
 //Function sourcing
 import { nextPlanetAgeDaysCalculator } from "./src/helpers/nextPlanetAgeDaysCalculator.js";
@@ -40,13 +42,17 @@ import { savePartyDetails } from "./src/savePartyDetails.js";
 import { extractKeyValueFromArray } from "./src/extractKeyValueFromArray.js";
 import { findIndexInArray } from "./src/arrayElementIndexFinder.js";
 import { removeElementFromArray } from "./src/removeElementFromArray.js";
+import { generatePlanetInfo } from "./src/generatePlanetInfo.js";
+import { getClosestPlanetBirthdays } from "./src/getClosetPlanetBirthdays.js";
+import { addIntSuffix } from "./src/addIntSuffix.js";
 
+import planetsData from "./data/planetsData.json" assert { type: "json" };
 import partyFormContents from "./data/partyFormContents.json" assert { type: "json" };
 import guestListModalContents from "./data/guestListModalContents.json" assert { type: "json" };
 import { saveGuestList } from "./src/saveGuestList.js";
 
 app.get("/", (req, res) => {
-  res.render("index", { currentYear, birthDate });
+  res.render("index", { currentYear, birthDate, nNearestBirthdays });
 });
 
 app.get("/party-planning", (req, res) => {
@@ -107,9 +113,23 @@ app.post("/submit-birthdate", (req, res) => {
   console.log(`your birthDate is ${birthDate}`);
   console.log(`your birthDateNumeric is ${birthDateNumeric}`);
 
+  //note, this currently means negative ages can be supplied - we'll need to amend this functionality in future
   let ageDiff = Math.abs(currentDate - birthDateNumeric);
   let earthAge = ageDiff / (1000 * 60 * 60 * 24 * 365.25);
 
+  //-----NEW CONTENT - temporary seperate section for upcoming birthday calculations - goal will be to refactor existing content to prevent duplicate data sources and calculations being used for planet ages etc
+
+  //This handles if a user amends their birthdate during the same session
+  planetBirthdayInfo = [];
+
+  //iteratively generate array elements in planetBirthDays
+  for (let i = 0; i < planetsData.length; i++) {
+    let planetInfo = generatePlanetInfo(planetsData, i, earthAge);
+    planetBirthdayInfo.push(planetInfo);
+  }
+  nNearestBirthdays = getClosestPlanetBirthdays(planetBirthdayInfo, 4);
+
+  //-----ORIGINAL CONTENT BELOW
   for (let i = 0; i < planetAgeMultiples.length; i++) {
     planetAge[i] = planetAgeMultiples[i] * earthAge;
   }
@@ -136,6 +156,8 @@ app.post("/submit-birthdate", (req, res) => {
     planetDemonyms,
     modalData,
     modalKeyTitles,
+    nNearestBirthdays,
+    addIntSuffix,
   });
 });
 
