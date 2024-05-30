@@ -127,7 +127,7 @@ app.post("/submit-birthdate", (req, res) => {
     let planetInfo = generatePlanetInfo(planetsData, i, earthAge);
     planetBirthdayInfo.push(planetInfo);
   }
-  nNearestBirthdays = getClosestPlanetBirthdays(planetBirthdayInfo, 4);
+  nNearestBirthdays = getClosestPlanetBirthdays(planetBirthdayInfo, 8);
 
   //-----ORIGINAL CONTENT BELOW
   for (let i = 0; i < planetAgeMultiples.length; i++) {
