@@ -52,7 +52,12 @@ import guestListModalContents from "./data/guestListModalContents.json" assert {
 import { saveGuestList } from "./src/saveGuestList.js";
 
 app.get("/", (req, res) => {
-  res.render("index", { currentYear, birthDate, nNearestBirthdays });
+  res.render("index", {
+    currentYear,
+    birthDate,
+    nNearestBirthdays,
+    addIntSuffix,
+  });
 });
 
 app.get("/party-planning", (req, res) => {
@@ -63,9 +68,10 @@ app.get("/party-planning", (req, res) => {
     currentYear,
     partyFormContents,
     partyDetailsCurrent,
-    extractKeyValueFromArray,
     guestListModalContents,
     guestListCurrent,
+    extractKeyValueFromArray,
+    addIntSuffix,
   });
 });
 
@@ -84,10 +90,11 @@ app.get("/party-planning-guest-edit", (req, res) => {
     currentYear,
     partyFormContents,
     partyDetailsCurrent,
-    extractKeyValueFromArray,
     guestListModalContents,
     guestListCurrent,
     elementForEdit,
+    extractKeyValueFromArray,
+    addIntSuffix,
   });
 });
 
