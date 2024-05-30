@@ -27,3 +27,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //please be aware this approach means no children of modal title or modal content divs can be created without amendment to the function
   replaceModalTitles(modalKeyTitles);
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  const partyPlan = document.querySelectorAll(".upcoming-birthday-button");
+
+  for (let i = 0; i < partyPlan.length; i++) {
+    partyPlan[i].addEventListener("click", () => {
+      window.location.href = "/party-planning";
+    });
+  }
+});

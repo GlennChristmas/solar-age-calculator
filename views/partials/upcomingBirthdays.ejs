@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming birthdays</title>
+    <link rel="stylesheet" href="/css/upcoming-birthdays.css"/>
+</head>
+<body>
+    <% if(nNearestBirthdays.length>0) { %>
+    <div class ="birthdays-background">
+        <div class="upcoming-birthdays-container">
+            Your upcoming birthdays:
+            <div class="upcoming-birthdays-grid">
+                <% for(planet of nNearestBirthdays) { %>
+                <div class="upcoming-birthday-container">
+                    <div class="upcoming-birthday-details">
+                        <div class="upcoming-birthday-planet">Your <%= addIntSuffix(planet.planetAge + 1) %> <%= planet.name %> Birthday</div>
+                        <div class="upcoming-birthday-earth-date">Earth date: <%= planet.nextBirthdayString %></div>
+                        <button class="upcoming-birthday-button">Plan your party here!</button>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</body>
+</html>
